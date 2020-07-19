@@ -14,7 +14,6 @@ import Input from '../../components/Input/Input'
 import NumberContainer from '../../components/NumberContainer/NumberContainer'
 
 export default function StartGameScreen(props) {
-  let [enteredNum, setEnteredNum] = useState('')
   let [confirmed, setConfirmed] = useState(false)
   let [selectedNumber, setSelectedNumber] = useState()
 
@@ -22,16 +21,16 @@ export default function StartGameScreen(props) {
 
   function numberInputHandler(inputText) {
     // replaces any non whole number with an empty string ''
-    setEnteredNum(inputText.replace(regexForWholeNumbers, ''))
+    props.onNumberEnter(inputText.replace(regexForWholeNumbers, ''))
   }
 
   function resetHandler() {
-    setEnteredNum('')
+    props.onNumberEnter('')
     setConfirmed(false)
   }
 
   function confirmHandler() {
-    let chosenNumber = parseInt(enteredNum)
+    let chosenNumber = parseInt(props.enteredNum)
     if (isNaN(chosenNumber) || chosenNumber <= 0 || chosenNumber > 99) {
       Alert.alert(
         'Invalid Number!', 
@@ -42,7 +41,6 @@ export default function StartGameScreen(props) {
     }
     setConfirmed(true)
     setSelectedNumber(chosenNumber)
-    setEnteredNum('')
     Keyboard.dismiss()
   }
 
@@ -57,6 +55,7 @@ export default function StartGameScreen(props) {
         </NumberContainer>
         <Button
           title="Start Game"
+          onPress={props.onStart}
         />
       </Card>
     )
@@ -70,7 +69,7 @@ export default function StartGameScreen(props) {
         <Card style={styles.inputContainer}>
           <Text>Select a Number</Text>
           <Input 
-            value={enteredNum}
+            value={props.enteredNum}
             keyboardType="number-pad" 
             placeholder="Guess"
             style={styles.input}
