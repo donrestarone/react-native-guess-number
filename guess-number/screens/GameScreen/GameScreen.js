@@ -20,17 +20,11 @@ export default function Gamescreen(props) {
     generateRandomBetween(1, 100, chosenNumber)
   )
 
-  let [numberOfGuesses, setNumberOfGuesses] = useState(0)
+  
 
   useEffect(() => {
     if (currentGuess === chosenNumber) {
-      console.log('game over')
-      Alert.alert(
-        "Game Over!",
-        `I guessed your number in ${numberOfGuesses} tries`,
-        [{text: 'New Game', style: 'default', onPress: props.onWin}]
-      )
-      return
+      props.onWin()
     }
   }, [currentGuess])
 
@@ -54,7 +48,7 @@ export default function Gamescreen(props) {
     }
     let nextGuess = generateRandomBetween(currentMinimumNumber.current, currentMaximumNumber.current, currentGuess)
     setCurrentGuess(nextGuess)
-    setNumberOfGuesses(previousGuessCount => previousGuessCount + 1)
+    props.onGuess()
   }
 
   return (
