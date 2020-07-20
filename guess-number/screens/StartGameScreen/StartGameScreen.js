@@ -67,7 +67,7 @@ export default function StartGameScreen(props) {
       <View style={styles.screen}>
         <Text style={styles.title}>Start a New Game</Text>
         <Card style={styles.inputContainer}>
-          <Text>Select a Number</Text>
+          <Text style={styles.subTitle}>Select a Number</Text>
           <Input 
             value={props.enteredNum}
             keyboardType="number-pad" 
@@ -105,6 +105,10 @@ const styles = StyleSheet.create({
     fontSize: 20,
     // equivalent to margin-top
     marginVertical: 10,
+    fontFamily: 'rowdies-bold'
+  },
+  subTitle: {
+    fontFamily: 'rowdies-regular'
   },
   inputContainer: {
     width: 300,
