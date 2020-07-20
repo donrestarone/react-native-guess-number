@@ -6,7 +6,8 @@ import {
   Button, 
   TouchableWithoutFeedback, 
   Keyboard,
-  Alert
+  Alert,
+  Image
 } from 'react-native'
 import Card from '../../components/Card/Card'
 import Colors from '../../constants/Colors'
@@ -65,6 +66,11 @@ export default function StartGameScreen(props) {
     // this is how we remove the keyboard when the user touches anywhere else on the screen
     <TouchableWithoutFeedback onPress={ () => {Keyboard.dismiss()} }>
       <View style={styles.screen}>
+        <Image 
+          source={require('../../assets/Images/lenny-logo.png')}
+          style={styles.image}
+          resizeMode="cover"
+        />
         <Text style={styles.title}>Start a New Game</Text>
         <Card style={styles.inputContainer}>
           <Text style={styles.subTitle}>Select a Number</Text>
@@ -132,5 +138,9 @@ const styles = StyleSheet.create({
   confirmation: {
     padding: 20,
     alignItems: 'center'
+  },
+  image: {
+    width: 75,
+    height: 75
   }
 })
