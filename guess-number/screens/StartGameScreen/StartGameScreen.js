@@ -14,6 +14,7 @@ import Colors from '../../constants/Colors'
 import Input from '../../components/Input/Input'
 import NumberContainer from '../../components/NumberContainer/NumberContainer'
 import MainButton from '../../components/MainButton/MainButton'
+import {MaterialCommunityIcons} from '@expo/vector-icons'
 
 export default function StartGameScreen(props) {
   let [confirmed, setConfirmed] = useState(false)
@@ -58,7 +59,10 @@ export default function StartGameScreen(props) {
         <MainButton
           onPress={props.onStart}
         >
-          Start Game
+          <MaterialCommunityIcons 
+            name="google-controller"
+            size={25}
+          />
         </MainButton>
       </Card>
     )
